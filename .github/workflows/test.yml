@@ -24,7 +24,9 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run flake8
-        run: flake8 app/
+        run: |
+          pip uninstall flake8-annotations -y
+          flake8 app/
       - name: Run student tests
         timeout-minutes: 5
         run: pytest app/
