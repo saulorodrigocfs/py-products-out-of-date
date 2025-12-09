@@ -25,7 +25,7 @@ jobs:
 
       - name: Run flake8
         run: |
-          pip uninstall flake8-annotations -y
+          pip uninstall flake8-annotations flake8-quotes -y
           flake8 app/
       - name: Run student tests
         timeout-minutes: 5
