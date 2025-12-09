@@ -1,13 +1,12 @@
 from app.main import outdated_products
 from unittest import mock
-from unittest.mock import MagicMock
-from typing import Generator
+from typing import Any
 import datetime
 import pytest
 
 
 @pytest.fixture()
-def mocked_function() -> Generator[MagicMock, None, None]:
+def mocked_function() -> Any:
     with mock.patch("app.main.datetime") as mock_datetime:
         yield mock_datetime.date.today
 
@@ -37,15 +36,13 @@ def mocked_function() -> Generator[MagicMock, None, None]:
 def test_outdated_products_works(
     prod: list,
     exp: list,
-    mocked_function: Generator[MagicMock, None, None]
+    mocked_function: Any
 ) -> None:
     mocked_function.return_value = datetime.date.today()
     assert exp == outdated_products(prod)
 
 
-def test_outdated_products_has_called(
-        mocked_function: Generator[MagicMock, None, None]
-) -> None:
+def test_outdated_products_has_called(mocked_function: Any) -> None:
     mocked_function.return_value = datetime.date.today()
     prod = [
         {
